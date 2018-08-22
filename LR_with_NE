@@ -1,1 +1,25 @@
+import matplotlib.pyplot as plt
+import numpy as np
 
+X = np.array([[125, 128, 106, 195, 108, 175, 162, 150, 139, 146]])
+y = np.array([[43, 45, 25, 110, 27, 90, 80, 59, 50, 55]])
+
+X_temp = np.array([[125, 128, 162, 108, 175, 150, 139, 146]]).T
+y_new = np.array([[43, 45, 80, 27, 90, 59, 50, 55]]).T
+X_new = np.concatenate((np.ones((X_temp.shape[0], 1)), X_temp), axis=1)
+# thêm cột [1;...;1] vào mảng X_new tương ứng với tham số bias khi thực hiện phép nhân
+theta = np.linalg.inv(X_new.T.dot(X_new)).dot(X_new.T).dot(y_new)
+# hàm np.linalg.inv dùng để tính ma trận nghịch đảo
+print(theta)
+
+X_test_temp = np.array([[106], [195]])
+X_test = np.concatenate((np.ones((X_test_temp.shape[0], 1)), X_test_temp), axis=1)
+y_predict = X_test.dot(theta)
+print(y_predict)
+
+plt.plot(X, y, "b.")
+plt.plot(X_test_temp, y_predict, 'r-')
+plt.axis([100, 200, 0, 150])
+plt.xlabel("Chiều cao")
+plt.ylabel("Cân nặng")
+plt.show()
