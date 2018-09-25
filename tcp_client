@@ -13,8 +13,8 @@ int main(int argc, char*argv[])
 	system("PAUSE");
 	SOCKADDR_IN serverAddr;
 	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_addr.s_addr = inet_addr(argv[1]);
-	serverAddr.sin_port = htons(int(argv[2]));
+	serverAddr.sin_addr.s_addr = inet_addr(argv[1]);// argv[1] là địa chỉ ip truyền vào
+	serverAddr.sin_port = htons(int(argv[2]));// argv[2] là cổng kết nối đến server
 	
 	int ret = connect(client, (SOCKADDR*)&serverAddr, sizeof(serverAddr));
 	
